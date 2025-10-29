@@ -1,0 +1,14 @@
+name: Build iOS App
+on: [push]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    - name: Build iOS App
+      run: |
+        xcodebuild -project CallRecorder.xcodeproj -scheme CallRecorder -destination 'platform=iOS Simulator,name=iPhone 14' build
